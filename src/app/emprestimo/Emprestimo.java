@@ -1,10 +1,15 @@
-package core.entidade;
+package app.emprestimo;
 
 import java.time.LocalDateTime;
+
+import app.aluno.Aluno;
+import app.livro.Livro;
+import core.util.CrudId;
 
 public class Emprestimo implements CrudId<Long> {
 	Long id;
 	LocalDateTime dataDoEmprestimo;
+	LocalDateTime dataDevolucao;
 	Livro livroEmprestado;
 	Aluno alunoResponsalve;
 	StatusEmprestimo status;
@@ -37,6 +42,22 @@ public class Emprestimo implements CrudId<Long> {
 	@Override
 	public Long getId() {
 		return this.id;
+	}
+
+	public void setStatus(StatusEmprestimo status) {
+		this.status = status;
+	}
+	public void setDataDevolucao(LocalDateTime dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+	public LocalDateTime getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	@Override
+	public String toString() {
+		return "Emprestimo [id=" + id + ", dataDoEmprestimo=" + dataDoEmprestimo + ", livroEmprestado="
+				+ livroEmprestado + ", alunoResponsalve=" + alunoResponsalve + ", status=" + status + "]";
 	}
 
 }

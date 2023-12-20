@@ -1,5 +1,7 @@
-package core.entidade;
+package app.emprestimo;
 
 public enum StatusEmprestimo {
+
 	ATIVO, FINALIZADO, PENDENTE
+
 }

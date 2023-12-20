@@ -1,4 +1,4 @@
-package core.entidade;
+package app.livro;
 
 public enum StatusLivro {
 	ALUGADO, DEVOLVIDO, ATRASO, LIVRE

@@ -1,13 +1,16 @@
 package core.service;
 
-import core.entidade.Emprestimo;
+import app.aluno.Aluno;
+import app.emprestimo.Emprestimo;
+import app.emprestimo.StatusEmprestimo;
+import app.livro.Livro;
 
 public interface EmprestimoService {
 	public Boolean jaExisti(long idEmprestimo);
 	public void consultar(long idEmprestimo);
 	
-	public void criar(Emprestimo emprestimo);
-	public void alterarStatus(Emprestimo emprestimo);
+	public void criar(Aluno aluno, Livro livro, String data, Long id , StatusEmprestimo status);
+	public void alterarStatus(Emprestimo emprestimo, StatusEmprestimo status);
 	public void finalizar(Emprestimo emprestimo);
 	
 }

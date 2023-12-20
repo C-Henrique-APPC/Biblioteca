@@ -8,6 +8,7 @@ public interface CrudRepositorio<T, ID > {
 	
 	public void deletar(ID id);
 	public void inserir(T t);
-	public void atualizar(T t);
+	public void atualizar(ID id, T t);
+	public Boolean existi(ID id);
 	
 }

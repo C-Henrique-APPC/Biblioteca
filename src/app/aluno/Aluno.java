@@ -1,6 +1,8 @@
-package core.entidade;
+package app.aluno;
 
-public class Aluno implements CrudId<Long>{
+import core.util.CrudId;
+
+public class Aluno implements CrudId<Long>, Cloneable{
 	Long matricula;
 	String nome;
 
@@ -8,7 +10,10 @@ public class Aluno implements CrudId<Long>{
 		this.matricula = matricula;
 		this.nome = nome;
 	}
+	public Aluno clone() throws CloneNotSupportedException {
 
+		return (Aluno) super.clone();
+	}
 	public Long getMatricula() {
 		return matricula;
 	}

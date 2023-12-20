@@ -1,7 +1,6 @@
 package app.livro;
 
-import app.AbstractCrudRepositorio;
-import core.entidade.Livro;
+import core.repositorio.AbstractCrudRepositorio;
 
 public class LivroRepositorioImpl extends AbstractCrudRepositorio<Livro, Long> {
 
