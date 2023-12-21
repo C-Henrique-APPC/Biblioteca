@@ -9,8 +9,8 @@ public interface EmprestimoService {
 	public Boolean jaExisti(long idEmprestimo);
 	public void consultar(long idEmprestimo);
 	
-	public void criar(Aluno aluno, Livro livro, String data, Long id , StatusEmprestimo status);
-	public void alterarStatus(Emprestimo emprestimo, StatusEmprestimo status);
+	public void criar(Aluno aluno, Livro livro, String data, Long id );
+	public void alterarStatus(Long id, StatusEmprestimo status);
 	public void finalizar(Emprestimo emprestimo);
 	
 }
