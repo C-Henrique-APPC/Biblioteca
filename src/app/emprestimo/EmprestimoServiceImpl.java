@@ -48,7 +48,7 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 
             emprestimo.setDataDevolucao(previsaoDevolucao(emprestimo.getDataDoEmprestimo(), DIAS_EMPRESTIMO_MAX));
             valor_atraso = tarifa.calTarifa(emprestimo.getDataDoEmprestimo(), LocalDateTime.now());
-
+            emprestimo.setTarifa(valor_atraso);
             System.out.println("\n===== CONSULTA DE EMPRESITMO EM ATRASO:" + "\nID Emprestimo: " + emprestimo.getId()
                     + "\nData de criacão : " + emprestimo.getDataDoEmprestimo().format(formatter)
                     + "\nPrevisão da devolução: " + emprestimo.getDataDevolucao().format(formatter)
@@ -177,9 +177,40 @@ public class EmprestimoServiceImpl implements EmprestimoService {
 
     @Override
     public void finalizar(Emprestimo emprestimo) {
-        // TODO Auto-generated method stub
-        System.out.println("");
 
+        Emprestimo empreFinalizado = repositorioEmprestimo.get(emprestimo.getId());
+        /*LocalDateTime dataPlusDays = emprestimo.getDataDoEmprestimo().plusDays(this.DIAS_EMPRESTIMO_MAX);
+        if (LocalDateTime.now().compareTo(dataPlusDays) > 0) {
+            System.out.println("Realize o pagamento antes de finalizar");
+            return;
+        }*/
+        if(!empreFinalizado.getTarifa().equals(0.0)){
+            System.out.println("Emprestimo com tarifa em conta, por favor pague o que deve!");
+            return;
+        }
+        Livro livroFinalizado = serviceLivro.consulta(empreFinalizado.livroEmprestado.getId());
+
+        empreFinalizado.setStatus(StatusEmprestimo.FINALIZADO);
+
+        livroFinalizado.setQuantidadeD(livroFinalizado.getQuantidadeD() + 1);
+        empreFinalizado.setDataDevolucao(LocalDateTime.now());
+
+        System.out.println("Emprestimo "+empreFinalizado.getId()+" finalizado com sucesso");
+
+
+
+    }
+
+    @Override
+    public Emprestimo carregarEmprestimo(Long id) {
+        return repositorioEmprestimo.get(id);
+
+    }
+
+    @Override
+    public void realizarPg(Emprestimo emprestimo) {
+        emprestimo.setTarifa(0.0);
+        System.out.println("Emprestimo pago!");
     }
 
 }

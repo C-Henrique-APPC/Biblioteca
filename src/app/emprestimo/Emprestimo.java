@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import app.aluno.Aluno;
 import app.livro.Livro;
+import app.tarifa.Tarifa;
 import core.util.CrudId;
 
 public class Emprestimo implements CrudId<Long> {
@@ -13,6 +14,7 @@ public class Emprestimo implements CrudId<Long> {
 	Livro livroEmprestado;
 	Aluno alunoResponsalve;
 	StatusEmprestimo status;
+	Double tarifa;
 
 	public Emprestimo(Long id, LocalDateTime dataDoEmprestimo, Livro livroEmprestado, Aluno alunoResponsalve,
 			StatusEmprestimo status) {
@@ -21,6 +23,14 @@ public class Emprestimo implements CrudId<Long> {
 		this.livroEmprestado = livroEmprestado;
 		this.alunoResponsalve = alunoResponsalve;
 		this.status = status;
+	}
+
+	public Double getTarifa() {
+		return tarifa;
+	}
+
+	public void setTarifa(Double tarifa) {
+		this.tarifa = tarifa;
 	}
 
 	public LocalDateTime getDataDoEmprestimo() {
@@ -56,8 +66,14 @@ public class Emprestimo implements CrudId<Long> {
 
 	@Override
 	public String toString() {
-		return "Emprestimo [id=" + id + ", dataDoEmprestimo=" + dataDoEmprestimo + ", livroEmprestado="
-				+ livroEmprestado + ", alunoResponsalve=" + alunoResponsalve + ", status=" + status + "]";
+		return "Emprestimo{" +
+				"id=" + id +
+				", dataDoEmprestimo=" + dataDoEmprestimo +
+				", dataDevolucao=" + dataDevolucao +
+				", livroEmprestado=" + livroEmprestado +
+				", alunoResponsalve=" + alunoResponsalve +
+				", status=" + status +
+				'}';
 	}
 
 }

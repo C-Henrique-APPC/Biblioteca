@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 public class Tarifa {
+
 	private Double VALOR_TARIFA = 1.0;
 	private Double VALOR;
 
@@ -28,5 +29,12 @@ public class Tarifa {
 
 	public void setVALOR(Double vALOR) {
 		VALOR = vALOR;
+	}
+
+	@Override
+	public String toString() {
+		return "Tarifa{" +
+				"VALOR=" + VALOR +
+				'}';
 	}
 }

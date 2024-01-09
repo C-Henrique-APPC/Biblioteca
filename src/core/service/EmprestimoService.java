@@ -12,5 +12,9 @@ public interface EmprestimoService {
 	public void criar(Aluno aluno, Livro livro, String data, Long id );
 	public void alterarStatus(Long id, StatusEmprestimo status);
 	public void finalizar(Emprestimo emprestimo);
+
+	public Emprestimo carregarEmprestimo(Long id);
+
+	public void realizarPg(Emprestimo emprestimo);
 	
 }

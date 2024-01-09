@@ -8,6 +8,7 @@ import app.emprestimo.EmprestimoRepositorioImpl;
 import app.emprestimo.EmprestimoServiceImpl;
 import app.livro.Livro;
 import app.livro.LivroServiceImpl;
+import core.util.Imprimir;
 
 public class Teste {
 	public static LivroServiceImpl serviceImpl = new LivroServiceImpl();
@@ -16,17 +17,17 @@ public class Teste {
 	public static EmprestimoServiceImpl emprestimoService = new EmprestimoServiceImpl(alunoServiceImpl,serviceImpl,emprestimoRepositorioImpl);
 
 	public static void main(String[] args) {
-		Livro l = new Livro(1L, "Teste", 2.0, 5D,  "Editora", 1, 2, 2);
+		Livro l1 = new Livro(1L, "Teste", 2.0, 5D,  "Editora", 1, 2, 2);
 		Livro l3 = new Livro(2L, "Teste 3", 2.3, 1D, "Editora", 1, 1, 4);
 		Livro l2 = new Livro(3L, "Teste 2", 2.0, 3D, "Editora", 1, 4, 2);
 		
-		serviceImpl.inserir(l);
+		serviceImpl.inserir(l1);
 		serviceImpl.inserir(l2);
 		serviceImpl.inserir(l3);
 		
 		Aluno aluno1 = new Aluno(1L, "Juninho");
-		Aluno aluno2 = new Aluno(2L, "Juninho");
-	
+		Aluno aluno2 = new Aluno(2L, "Karlinho");
+
 		alunoServiceImpl.inserir(aluno1);
 		alunoServiceImpl.inserir(aluno2);
 		
@@ -40,9 +41,15 @@ public class Teste {
 		
 		/*emprestimoService.consultarAtraso(2L);
 		emprestimoService.alterarStatus(1L, StatusEmprestimo.FINALIZADO);
-		emprestimoService.consultar(1L);*/
+		*/
+		emprestimoService.consultarAtraso(1L);
 		emprestimoService.consultarTodos();
 		//emprestimoService.validarEmprestimos();
+		emprestimoService.finalizar(emprestimoService.carregarEmprestimo(1L));
+		emprestimoService.consultar(1L);
+		emprestimoService.realizarPg(emprestimoService.carregarEmprestimo(1L));
+		emprestimoService.finalizar(emprestimoService.carregarEmprestimo(1L));
+		emprestimoService.consultar(1L);
 
 	}
 }
